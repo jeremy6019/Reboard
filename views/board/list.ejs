@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: left;
+  padding: 16px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+a{text-align:left;
+padding:16px;}
+</style>
+</head>
+<body>
+
+<h2>답변 게시판</h2>
+
+<table>
+  <tr>
+    <th width="5%">No</th>
+    <th width="65%">제목</th>
+    <th width="10%">작성자</th>
+    <th width="10%">등록일</th>
+    <th width="10%">조회수</th>
+  </tr>
+  <%for(var i=0; i<result.length; i++){%>
+  <%var json = result[i];%>
+  <tr>
+    <td>
+
+    </td>
+    <td>
+        <div style="width:<%=json.depth*20%>px;height:1px;display:inline-block"></div>
+        <%if(json.depth>0){//답변이라면...%><img src="/images/reply.png" width="25px"/><%}%>
+        <a href="/board/content?reboard_id=<%=json.reboard_id%>"><%=json.title%></a></td>
+    <td><%=json.writer%></td>
+    <td><%=new Date(json.regdate).getDate()%></td>
+    <td><%=json.hit%></td>
+  </tr>
+  
+  <%}%>
+  <tr>
+    <td colspan="5">
+      <button onClick="location.href='/board/write.html';">글등록</button>
+    </td>
+</tr>
+</table>
+<button></button>
+</body>
+</html>
